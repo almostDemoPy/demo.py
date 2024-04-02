@@ -9,7 +9,7 @@ str.expandtabs(
 
 Parameters :
 
-tabsize : Optional[int] = amount of spaces to be substituted with "\t"
+tabsize : Optional[int] = amount of spaces to be substituted with "\t". defaults to 8 spaces
 
 """
 
