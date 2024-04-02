@@ -12,7 +12,7 @@ Parameters:
 
 length : int = length of the string after padding
 
-fillchar : Optional[str] = characters which need to be padded. If not provided, defaults to space
+fillchar : Optional[str] = character which need to be padded. If not provided, defaults to space
 
 """
 
@@ -25,8 +25,17 @@ print(string.center(10, "#"))
 
 # Case : LENGTH is less than the length of the string
 
-stringg : str = "sample"
+string : str = "sample"
 print(string.center(5, "#"))
 
 # Output :
 # sample
+
+
+# Case : FILLCHAR is at least 2 characters long
+
+string : str = "sample"
+print(string.center(20, "ab"))
+
+# Output :
+# TypeError: The fill character must be exactly one character long
