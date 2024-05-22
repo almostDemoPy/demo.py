@@ -68,7 +68,3 @@ class EncrypterClient:
 
     def reverse_string(self, text : str) -> str:
         return "".join(text[::-1])
-
-encrypter : EncrypterClient = EncrypterClient()
-encrypted : str = encrypter.encrypt("demo")
-print(encrypted)
