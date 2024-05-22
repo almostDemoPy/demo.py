@@ -8,12 +8,21 @@ from random import random
 from re import Match, search
 from string import ascii_letters, digits
 
+class Encryption:
+    def __init__(self, text : str, data : dict[str, str], pattern : str):
+        self.text : str = text
+        self.data : dict[str, str] = data
+        self.pattern : str = pattern
+
+    def __str__(self):
+        return self.data["text"]
+
 class EncrypterClient:
     def __init__(self):
         print("Encrypter Client initiated")
         self.pattern : str = "^[\x20-\x7E]*$"
 
-    def encrypt(self, text : str) -> dict[str, str]:
+    def encrypt(self, text : str) -> Encryption:
         text.replace("\n", " ")
         matches : Match = search(self.pattern, text)
         if matches is None: raise Exception("Provided text contained invalid characters")
@@ -25,10 +34,14 @@ class EncrypterClient:
         key : str = f"{key_string}@{pairs_string}"
         key_final : str = self.reverse_string(self.encode_to_b64(key))
         final : str = self.reverse_string(self.encode_to_b64(pre_text))
-        return {
+        data : dict = {
             "text": final,
             "key": key_final
         }
+        return Encryption(text, data, self.pattern)
+
+    def pattern(self) -> str:
+        return self.__pattern
 
     def shuffle(self) -> str:
         characters : str = ascii_letters + digits
@@ -68,3 +81,7 @@ class EncrypterClient:
 
     def reverse_string(self, text : str) -> str:
         return "".join(text[::-1])
+
+encrypter = EncrypterClient()
+encrypted = encrypter.encrypt("demo")
+print(str(encrypted))
