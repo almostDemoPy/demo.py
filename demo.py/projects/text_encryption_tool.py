@@ -1,6 +1,7 @@
-# Translation from JS to PY from :
+# JS2PY - Episode 1 : Text Encryption Tool
+# Translation from JS to PY of :
 # https://github.com/TanvishGG/Text-Encryption-Tool/tree/main
-# by Tanvish
+# JS code by TanvishGG
 
 
 from base64 import b64encode, b64decode
@@ -10,21 +11,52 @@ from string import ascii_letters, digits
 
 class Encryption:
     def __init__(self, text : str, data : dict[str, str], pattern : str):
-        self.text : str = text
-        self.data : dict[str, str] = data
-        self.pattern : str = pattern
+        self.__text : str = text
+        self.__data : dict[str, str] = data
+        self.__pattern : str = pattern
 
     def __str__(self):
-        return self.data["text"]
+        return self.__data["text"]
 
-class EncrypterClient:
-    def __init__(self):
+    @property
+    def text(self) -> str:
+        return self.__text
+
+    @property
+    def data(self) -> dict:
+        return self.__data
+
+    @property
+    def pattern(self) -> str:
+        return self.__pattern
+
+class Decryption:
+    def __init__(self, text : str):
+        self.__text = text
+
+    def __str__(self):
+        return self.__text
+
+    @property
+    def text(self) -> str:
+        return self.__text
+
+class EncryptionClient:
+    def __init__(self, pattern : str = "^[\x20-\x7E]*$"):
         print("Encrypter Client initiated")
-        self.pattern : str = "^[\x20-\x7E]*$"
+        self.__pattern : str = pattern
+
+    @property
+    def pattern(self) -> str:
+        return self.__pattern
+
+    @pattern.setter
+    def pattern_setter(self, value : str) -> None:
+        self.__pattern = value
 
     def encrypt(self, text : str) -> Encryption:
         text.replace("\n", " ")
-        matches : Match = search(self.pattern, text)
+        matches : Match = search(self.__pattern, text)
         if matches is None: raise Exception("Provided text contained invalid characters")
         shuffle1 : str = self.shuffle()
         shuffle2 : str = self.shuffle()
@@ -38,10 +70,17 @@ class EncrypterClient:
             "text": final,
             "key": key_final
         }
-        return Encryption(text, data, self.pattern)
+        return Encryption(text, data, self.__pattern)
 
-    def pattern(self) -> str:
-        return self.__pattern
+    def decrypt(self, text : str, password : str) -> Decryption:
+        text_decoded : str = self.decode_from_b64(self.reverse_string(text))
+        key_decoded : str = self.decode_from_b64(self.reverse_string(password))
+        key_1, key_2 = key_decoded.split("@")
+        map : dict = {char_1: char_2 for char_1, char_2 in zip(list(key_1), list(key_2))}
+        return Decryption(self.replace(text_decoded, map))
+
+    def decode_from_b64(self, text : str) -> str:
+        return b64decode(text.encode("ascii")).decode("ascii")
 
     def shuffle(self) -> str:
         characters : str = ascii_letters + digits
@@ -81,7 +120,3 @@ class EncrypterClient:
 
     def reverse_string(self, text : str) -> str:
         return "".join(text[::-1])
-
-encrypter = EncrypterClient()
-encrypted = encrypter.encrypt("demo")
-print(str(encrypted))
