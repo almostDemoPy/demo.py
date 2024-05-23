@@ -29,3 +29,4 @@ replacements : str = "sai"
 deleted : str = "-"
 table : dict[int, int | None] = string.maketrans(replaced, replacements, deleted)
 print(table)
+# {100: 115, 105: 97, 111: 105, 45: None} 
