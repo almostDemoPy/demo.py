@@ -30,7 +30,7 @@ print(string.rpartition("in"))
 # Case : separator is not found
 
 string : str = "sample python string"
-print(string.rpartition("in"))
+print(string.rpartition("of"))
 # ("", "", "sample python string")
 
 
