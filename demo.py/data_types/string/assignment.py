@@ -1,3 +1,10 @@
+"""
+
+variable_name : str = "text"
+
+"""
+
+
 string : str = "a"
 print(string)
 
