@@ -1,6 +1,6 @@
 """
 
-variable_name : str = "text"
+variable_name : str = "your text here"
 
 """
 
