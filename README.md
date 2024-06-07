@@ -4,6 +4,7 @@ demo but python
 ## Data Types
 1. [string](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/string)
 2. [list](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/list)
+3. [dictionary](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/dictionary)
 
 ## Packages
 1. [discord.py](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/packages/discord.py)
