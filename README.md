@@ -15,3 +15,4 @@ demo but python
 
 ## Socials
 Discord : [demo.py](https://discord.gg/UQhuWWufgb)
+Reddit : [r/demo_py](https://www.reddit.com/r/demo_py/)
