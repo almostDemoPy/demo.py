@@ -5,6 +5,9 @@ demo but python
 1. [string](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/string)
 2. [list](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/list)
 3. [dictionary](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/dictionary)
+4. [set](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/set)
+5. [float](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/float)
+6. [integer](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/integer)
 
 ## Packages
 1. [discord.py](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/packages/discord.py)
