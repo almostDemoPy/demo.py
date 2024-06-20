@@ -1,7 +1,7 @@
 """
 
 class ClassName:
-  def __trunc__(self) -> None:
+  def __trunc__(self) -> int:
     ...
 
 - Implements the behavior of the math.trunc() function
