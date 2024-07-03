@@ -21,10 +21,25 @@ class LevelCog(commands.Cog):
     max_experience : int = int((level + 1) ** self.multiplier)
     return max_experience
 
+  def level_up(self, file : TextIO, user_id : int) -> bool:
+    user_data : dict[str, int] = file.get(str(user_id), {"level": 1, "experience": 0})
+    level : int = user_data["level"]
+    experience : int = user_data["experience"]
+    if int(experience ** (1 / self.multiplier)) > level:
+      user_data["level"] : int = int(experience ** (1 / self.multiplier))
+      file[str(user_id)].update(user_data)
+      self.save_file('json/level.json', file)
+      return True
+    return False
+
   def load_file(self, path : str) -> TextIO:
     with open(path, "r") as f:
       file : TextIO = json.load(f)
     return file
+
+  def save_file(self, path : str, file : TextIO) -> None:
+    with open(path, "w") as f:
+      json.dump(file, f, indentt = 2)
 
   @level.command(
     name = "info",
