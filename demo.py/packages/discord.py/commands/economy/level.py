@@ -21,12 +21,14 @@ class LevelCog(commands.Cog):
     max_experience : int = int((level + 1) ** self.multiplier)
     return max_experience
 
-  def level_up(self, file : TextIO, user_id : int) -> bool:
+  def level_up(self, user_id : int) -> int | None:
+    file : TextIO = self.load_file('json/level.json')
     user_data : dict[str, int] = file.get(str(user_id), {"level": 1, "experience": 0})
     level : int = user_data["level"]
     experience : int = user_data["experience"]
     if int(experience ** (1 / self.multiplier)) > level:
-      user_data["level"] : int = int(experience ** (1 / self.multiplier))
+      new_level : int = int(experience ** (1 / self.multiplier))
+      user_data["level"] : int = new_level
       file[str(user_id)].update(user_data)
       self.save_file('json/level.json', file)
       return True
@@ -69,8 +71,72 @@ class LevelCog(commands.Cog):
       ephemeral = True
     )
 
+  @level.command(
+    name = "add_exp",
+    description = "Add experience to a member"
+  )
+  @app_commands.describe(
+    member = "To whom the experience will be added",
+    amount = "Amount of experience to add"
+  )
+  @app_commands.checks.has_role(
+    "Levelling Manager"
+  )
+  async def level_add_experience(
+    self,
+    interaction : discord.Interaction,
+    member : discord.Member,
+    amount : app_commands.Range[int, 1, 10_000]
+  ) -> None:
+    user : discord.Member = member or interaction.user
+    file : TextIO = self.load_file('json/level.json')
+    user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0})
+    user_data["experience"] += amount
+    file.update(user_data)
+    self.save_file('json/level.json', file)
+    new_level : bool = self.level_up(user.id)
+    embeds = [
+      discord.Embed(
+        description = f"Successfully gave {member.mention} ` {amount:,} ` Experiences.",
+        color = 0x39ff14
+      ).set_author(
+        name = interaction.client.user.name,
+        icon_url = interaction.client.user.display_avatar
+      )
+    ]
+    if new_level:
+      embeds.append(
+        discord.Embed(
+          description = f"Congratulations, {member.mention} ! You levelled up to ` Level {new_level:,} ` !",
+          color = 0x2b2d31
+        ).set_thumbnail(
+          url = member.display_avatar
+        )
+      )
+    await interaction.response.send_message(
+      member.mention if new_level else "",
+      embeds = embeds
+    )
+
   @level_info.error
+  @level_add_experience.error
   async def error(self, interaction : discord.Interaction, error : Exception) -> None:
+    if isinstance(error, app_commands.MissingRole):
+      await interaction.response.send_message(
+        embed = discord.Embed(
+          description = f"You do not have permission to execute this command",
+          color = 0xff3131
+        ).set_author(
+          name = interaction.client.user.name,
+          icon_url = interaction.client.user.display_avatar
+        ).add_field(
+          name = "Reason :",
+          value = f"> Missing Role : ` {error.missing_role} `",
+          inline = True
+        ),
+        ephemeral = True
+      )
+      return
     traceback.print_exc()
 
 async def setup(bot : commands.Bot) -> None:
