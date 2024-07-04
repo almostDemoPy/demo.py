@@ -21,18 +21,18 @@ class LevelCog(commands.Cog):
     max_experience : int = int((level + 1) ** self.multiplier)
     return max_experience
 
-  def level_up(self, user_id : int) -> int | None:
+  def level(self, user_id : int) -> int | None:
     file : TextIO = self.load_file('json/level.json')
     user_data : dict[str, int] = file.get(str(user_id), {"level": 1, "experience": 0})
     level : int = user_data["level"]
     experience : int = user_data["experience"]
     if int(experience ** (1 / self.multiplier)) > level:
       new_level : int = int(experience ** (1 / self.multiplier))
-      user_data["level"] : int = new_level
+      user_data["level"] : int = new_level if new_level >= 1 else 1
       file[str(user_id)].update(user_data)
       self.save_file('json/level.json', file)
-      return True
-    return False
+      return new_level if new_level >= 1 else 1
+    return None
 
   def load_file(self, path : str) -> TextIO:
     with open(path, "r") as f:
@@ -86,15 +86,40 @@ class LevelCog(commands.Cog):
     self,
     interaction : discord.Interaction,
     member : discord.Member,
-    amount : app_commands.Range[int, 1, 10_000]
+    amount : app_commands.Range[int, -10_000, 10_000]
   ) -> None:
+    if amount == 0:
+      await interaction.response.send_message(
+        embed = discord.Embed(
+          description = "` amount ` parameter cannot be ` 0 `",
+          color = 0xff3131
+        ).set_author(
+          name = interaction.client.user.name,
+          icon_url = interaction.client.user.display_avatar
+        ),
+        ephemeral = True
+      )
+      return
     user : discord.Member = member or interaction.user
     file : TextIO = self.load_file('json/level.json')
     user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0})
+    level : int = user_data["level"]
+    if amount < 0 and abs(amount) > user_data["experience"]:
+      await interaction.response.send_message(
+        embed = discord.Embed(
+          description = f"Negative ` amount ` cannot be less than ` {user_data["experience"]:,} `",
+          color = 0xff3131
+        ).set_author(
+          name = interaction.client.user.name,
+          icon_url = interaction.client.user.display_avatar
+        ),
+        ephemeral = True
+      )
+      return
     user_data["experience"] += amount
     file.update(user_data)
     self.save_file('json/level.json', file)
-    new_level : bool = self.level_up(user.id)
+    new_level : int | None = self.level(user.id)
     embeds = [
       discord.Embed(
         description = f"Successfully gave {member.mention} ` {amount:,} ` Experiences.",
@@ -104,10 +129,97 @@ class LevelCog(commands.Cog):
         icon_url = interaction.client.user.display_avatar
       )
     ]
-    if new_level:
+    if new_level and new_level > level:
       embeds.append(
         discord.Embed(
           description = f"Congratulations, {member.mention} ! You levelled up to ` Level {new_level:,} ` !",
+          color = 0x2b2d31
+        ).set_thumbnail(
+          url = member.display_avatar
+        )
+      )
+    if new_level and new_level < level:
+      embeds.append(
+        discord.Embed(
+          description = f"Unfortunately, {member.mention} levelled down to ` Level {new_level:,} `",
+          color = 0x2b2d31
+        ).set_thumbnail(
+          url = member.display_avatar
+        )
+      )
+    await interaction.response.send_message(
+      member.mention if new_level else "",
+      embeds = embeds
+    )
+
+  @level.command(
+    name = "rm_exp",
+    description = "Remove some experience from a member"
+  )
+  @app_commands.describe(
+    member = "To whose experience to deduct",
+    amount = "Amount of experiences to deduct"
+  )
+  async def level_remove_experience(
+    self,
+    interaction : discord.Interaction,
+    member : discord.Member,
+    amount : app_commands.Range[int, -10_000, 10_000]
+  ) -> None:
+    if amount == 0:
+      await interaction.response.send_message(
+        embed = discord.Embed(
+          description = "` amount ` parameter cannot be ` 0 `",
+          color = 0xff3131
+        ).set_author(
+          name = interaction.client.user.name,
+          icon_url = interaction.client.user.display_avatar
+        ),
+        ephemeral = True
+      )
+      return
+    user : discord.Member = member or interaction.user
+    file : TextIO = self.load_file('json/level.json')
+    user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0})
+    level : int = user_data["level"]
+    if amount > user_data["experience"]:
+      await interaction.response.send_message(
+        embed = discord.Embed(
+          description = f"` amount ` cannot be more than ` {user_data["experience"]:,} `",
+          color = 0xff3131
+        ).set_author(
+          name = interaction.client.user.name,
+          icon_url = interaction.client.user.display_avatar
+        ),
+        ephemeral = True
+      )
+      return
+    user_data["experience"] -= amount
+    file.update(user_data)
+    self.save_file('json/level.json', file)
+    new_level : int | None = self.level(user.id)
+    embeds = [
+      discord.Embed(
+        description = f"Successfully deducted ` {amount:,} ` Experiences from {member.mention}",
+        color = 0x39ff14
+      ).set_author(
+        name = interaction.client.user.name,
+        icon_url = interaction.client.user.display_avatar
+      )
+    ]
+    if new_level and new_level > level:
+      embeds.append(
+        discord.Embed(
+          description = f"Congratulations, {member.mention} ! You levelled up to ` Level {new_level:,} ` !",
+          color = 0x2b2d31
+        ).set_thumbnail(
+          url = member.display_avatar
+        )
+      )
+    if new_level and new_level < level:
+      embeds.append(
+        discord.Embed(
+          description = f"Unfortunately, {member.mention} levelled down to ` Level {new_level:,} `",
           color = 0x2b2d31
         ).set_thumbnail(
           url = member.display_avatar
@@ -120,6 +232,7 @@ class LevelCog(commands.Cog):
 
   @level_info.error
   @level_add_experience.error
+  @level_remove_experience.error
   async def error(self, interaction : discord.Interaction, error : Exception) -> None:
     if isinstance(error, app_commands.MissingRole):
       await interaction.response.send_message(
