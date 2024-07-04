@@ -1,6 +1,7 @@
 import discord
 import json
 import traceback
+from datetime import datetime
 from discord import app_commands, ui
 from discord.ext import commands
 from typing import TextIO
@@ -10,6 +11,53 @@ class LevelCog(commands.Cog):
     self.bot : commands.Bot = bot
     self.experience_gain_amount : int = 5
     self.multiplier : int = 4
+    self.interval_threshold : int = 10
+
+  @commands.Cog.listener()
+  async def on_message(
+    self,
+    message : discord.Message
+  ) -> None:
+    try:
+      user : discord.Member = message.author
+      file : TextIO = self.load_file('json/level.json')
+      user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0, "last_message": None})
+      if not user_data["last_message"]:
+        user_data["experience"] += self.experience_gain_amount
+        user_data["last_message"] = int(datetime.now().timestamp())
+        file[str(user.id)].update(user_data)
+        self.save_file('json/level.json', file)
+      else:
+        last_message_timestamp : int = user_data["last_message"]
+        current_timestamp : int = int(datetime.now().timestamp())
+        if current_timestamp - last_message_timestamp > self.interval_threshold:
+          user_data["experience"] += self.experience_gain_amount
+          user_data["last_message"] = int(datetime.now().timestamp())
+          file[str(user.id)].update(user_data)
+          self.save_file('json/level.json', file)
+      new_level : int | None = self.level(user.id)
+      if new_level and new_level > level:
+        await message.reply(
+          embed = discord.Embed(
+            description = f"Congratulations, {member.mention} ! You levelled up to ` Level {new_level:,} ` !",
+            color = 0x2b2d31
+          ).set_thumbnail(
+            url = member.display_avatar
+          ),
+          mention_author = False
+        )
+      if new_level and new_level < level:
+        await message.reply(
+          embed = discord.Embed(
+            description = f"Unfortunately, {member.mention} levelled down to ` Level {new_level:,} `",
+            color = 0x2b2d31
+          ).set_thumbnail(
+            url = member.display_avatar
+          ),
+          mention_author = False
+        )
+    except:
+      traceback.print_exc()
 
   level : app_commands.Group = app_commands.Group(
     name = "level",
@@ -17,13 +65,13 @@ class LevelCog(commands.Cog):
   )
 
   def get_max_exp(self, file : TextIO, user_id : int) -> int:
-    level : int = file.get(str(user_id), {"level": 1, "experience": 0})["level"]
+    level : int = file.get(str(user_id), {"level": 1, "experience": 0, "last_message": None})["level"]
     max_experience : int = int((level + 1) ** self.multiplier)
     return max_experience
 
   def level(self, user_id : int) -> int | None:
     file : TextIO = self.load_file('json/level.json')
-    user_data : dict[str, int] = file.get(str(user_id), {"level": 1, "experience": 0})
+    user_data : dict[str, int] = file.get(str(user_id), {"level": 1, "experience": 0, "last_message": None})
     level : int = user_data["level"]
     experience : int = user_data["experience"]
     if int(experience ** (1 / self.multiplier)) > level:
@@ -53,7 +101,7 @@ class LevelCog(commands.Cog):
   async def level_info(self, interaction : discord.Interaction, member : discord.Member | None = None) -> None:
     file : TextIO = self.load_file("json/level.json")
     user : discord.Member = member or interaction.user
-    user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0})
+    user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0, "last_message": None})
     max_experience : int = self.get_max_exp(file, user.id)
     await interaction.response.send_message(
       embed = discord.Embed(
@@ -102,7 +150,7 @@ class LevelCog(commands.Cog):
       return
     user : discord.Member = member or interaction.user
     file : TextIO = self.load_file('json/level.json')
-    user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0})
+    user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0, "last_message": None})
     level : int = user_data["level"]
     if amount < 0 and abs(amount) > user_data["experience"]:
       await interaction.response.send_message(
@@ -180,7 +228,7 @@ class LevelCog(commands.Cog):
       return
     user : discord.Member = member or interaction.user
     file : TextIO = self.load_file('json/level.json')
-    user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0})
+    user_data : dict[str, int] = file.get(str(user.id), {"level": 1, "experience": 0, "last_message": None})
     level : int = user_data["level"]
     if amount > user_data["experience"]:
       await interaction.response.send_message(
