@@ -4,7 +4,7 @@ import traceback
 from datetime import datetime
 from discord import app_commands, ui
 from discord.ext import commands
-from typing import TextIO
+from typing import Literal, TextIO
 
 class LevelCog(commands.Cog):
   def __init__(self, bot : commands.Bot) -> None:
@@ -278,8 +278,44 @@ class LevelCog(commands.Cog):
       embeds = embeds
     )
 
-  @level_info.error
+  @level.command(
+    name = "leaderboard",
+    description = "Current levelling leaderboard"
+  )
+  @app_commands.describe(
+    member = "Get the leaderboard rank of a member"
+    scope = "Scope of the leaderboard"
+  )
+  async def level_leaderboard(
+    self,
+    interaction : discord.Interaction,
+    member : discord.Member = None,
+    scope : Literal["global", "guild"] = "global"
+  ) -> None:
+    user : discord.Member = member or interaction.user
+    guild : discord.Guild = interaction.guild
+    file : TextIO = self.load_file('json/level.json')
+    leaderboard : list[str] = sorted(file.keys, key = lambda x : file[x]["experience"], reverse = True)
+    if scope == "guild":
+      leaderboard : list[str] = [
+        user_id for user_id in leaderboard if guild.get_member(int(user_id))
+      ]
+      if not leaderboard:
+        await interaction.response.send_message(
+          embed = discord.Embed(
+            description = f"No one is placed in ` {guild.name} `'s levelling leaderboard currently",
+            color = 0xff3131
+          ).set_author(
+            name = interaction.client.user.name,
+            icon_url = interaction.client.user.display_avatar
+          ),
+          ephemeral = True
+        )
+        return
+
   @level_add_experience.error
+  @level_info.error
+  @level_leaderboard.error
   @level_remove_experience.error
   async def error(self, interaction : discord.Interaction, error : Exception) -> None:
     if isinstance(error, app_commands.MissingRole):
