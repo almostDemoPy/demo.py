@@ -6,6 +6,12 @@ class ClassName:
 
 - Implements the built-in Bitwise OR | operation
 
+===============================================================
+
+Parameters :
+
+other : Any = other value
+
 """
 
 from typing import Self
