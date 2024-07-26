@@ -17,7 +17,6 @@ bot : Bot = Bot(
   description = "A sample of a prefix command"
 )
 async def sample(
-  self,
   ctx : Context
 ) -> None:
   author : Member = ctx.author
