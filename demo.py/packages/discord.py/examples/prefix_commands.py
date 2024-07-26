@@ -27,7 +27,6 @@ async def sample(
 
 @sample.error
 async def sample_error(
-  self,
   context : Context,
   error : Exception
 ) -> None:
