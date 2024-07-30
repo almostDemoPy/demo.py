@@ -11,13 +11,10 @@ demo but python
 7. [set](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/set)
 
 ## Operations
-1. [+ Addition](<https://github.com/almostDemoPy/demo.py/blob/main/demo.py/operations/addition.py>)
-2. [** Exponentiation](<https://github.com/almostDemoPy/demo.py/blob/main/demo.py/operations/exponentiation.py>)
-3. [/ Division ( float )](<https://github.com/almostDemoPy/demo.py/blob/main/demo.py/operations/float_division.py>)
-4. [// Division ( floor )](<https://github.com/almostDemoPy/demo.py/blob/main/demo.py/operations/floor_division.py>)
-5. [% Modulus](<https://github.com/almostDemoPy/demo.py/blob/main/demo.py/operations/modulus.py>)
-6. [* Multiplication](<https://github.com/almostDemoPy/demo.py/blob/main/demo.py/operations/multiplication.py>)
-7. [- Subtraction](<https://github.com/almostDemoPy/demo.py/blob/main/demo.py/operations/subtraction.py>)
+1. [Arithmetic](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/arithmetic>)
+2. [Bitwise](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/bitwise>)
+3. [Comparison](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/comparison>)
+4. [Logical](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/logical>)
 
 ## Packages
 1. [discord.py](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/packages/discord.py)
