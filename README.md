@@ -12,9 +12,10 @@ demo but python
 
 ## Operations
 1. [Arithmetic](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/arithmetic>)
-2. [Bitwise](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/bitwise>)
-3. [Comparison](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/comparison>)
-4. [Logical](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/logical>)
+2. [Assignment](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/assignment>)
+3. [Bitwise](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/bitwise>)
+4. [Comparison](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/comparison>)
+5. [Logical](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/logical>)
 
 ## Packages
 1. [discord.py](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/packages/discord.py)
