@@ -15,7 +15,10 @@ demo but python
 2. [Assignment](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/assignment>)
 3. [Bitwise](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/bitwise>)
 4. [Comparison](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/comparison>)
-5. [Logical](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/logical>)
+5. [Identity](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/identity>)
+6. [Logical](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/logical>)
+7. [Membership](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/membership>)
+8. [Ternary](<https://github.com/almostDemoPy/demo.py/blob/main/demo.py/operations/ternary.py>)
 
 ## Packages
 1. [discord.py](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/packages/discord.py)
