@@ -1,14 +1,31 @@
 # demo.py
-demo but python
+Book of Python containing every possible simplified versions of documentations, ranging from the basics, built-ins, packages, and libraries.
+
+![Static Badge](https://img.shields.io/badge/Python_%3E%3D3.12-yellow?style=for-the-badge)
 
 ## Data Types
-1. [class](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/class>)
-2. [dictionary](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/dictionary)
-3. [float](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/float)
-4. [integer](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/integer)
-5. [list](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/list)
-6. [string](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/string)
-7. [set](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/data_types/set)
+- [Boolean](https://github.com/almostDemoPy/demo.py/blob/c33ecd83d97d0b89ae8299fb98ef7b3de16053b9/data_types/boolean.md)
+- [Class](https://github.com/almostDemoPy/demo.py/blob/c33ecd83d97d0b89ae8299fb98ef7b3de16053b9/data_types/class.md)
+  - [Class and Instance Variables](https://github.com/almostDemoPy/demo.py/blob/main/data_types/class.md#class-and-instance-variables)
+  - [Dunder Methods](https://github.com/almostDemoPy/demo.py/blob/main/data_types/class.md#dunder-methods)
+- [Dictionary](https://github.com/almostDemoPy/demo.py/blob/c33ecd83d97d0b89ae8299fb98ef7b3de16053b9/data_types/dictionary.md)
+  - [Dictionary Comprehensions](https://github.com/almostDemoPy/demo.py/blob/main/data_types/dictionary.md#dictionary-comprehensions)
+  - [Dictionary Methods](https://github.com/almostDemoPy/demo.py/blob/main/data_types/dictionary.md#dictionary-methods)
+- [Float](https://github.com/almostDemoPy/demo.py/blob/c33ecd83d97d0b89ae8299fb98ef7b3de16053b9/data_types/float.md)
+- [Integer](https://github.com/almostDemoPy/demo.py/blob/c33ecd83d97d0b89ae8299fb98ef7b3de16053b9/data_types/integer.md)
+- [List](https://github.com/almostDemoPy/demo.py/blob/c33ecd83d97d0b89ae8299fb98ef7b3de16053b9/data_types/list.md)
+  - [List Comprehensions](https://github.com/almostDemoPy/demo.py/blob/main/data_types/list.md#list-comprehensions)
+  - [List Indexing](https://github.com/almostDemoPy/demo.py/blob/main/data_types/list.md#list-indexing)
+  - [List Slicing](https://github.com/almostDemoPy/demo.py/blob/main/data_types/list.md#list-slicing)
+  - [List Methods](https://github.com/almostDemoPy/demo.py/blob/main/data_types/list.md#list-methods)
+- [Set](https://github.com/almostDemoPy/demo.py/blob/c33ecd83d97d0b89ae8299fb98ef7b3de16053b9/data_types/set.md)
+  - [Set Methods](https://github.com/almostDemoPy/demo.py/blob/main/data_types/set.md#set-methods)
+- [String](https://github.com/almostDemoPy/demo.py/blob/c33ecd83d97d0b89ae8299fb98ef7b3de16053b9/data_types/string.md)
+  - [Formatted Strings or F-Strings](https://github.com/almostDemoPy/demo.py/blob/main/data_types/string.md#formatted-strings-or-f-strings)
+  - [String Indexing](https://github.com/almostDemoPy/demo.py/blob/main/data_types/string.md#string-indexing)
+  - [String Slicing](https://github.com/almostDemoPy/demo.py/blob/main/data_types/string.md#string-slicing)
+  - [String Methods](https://github.com/almostDemoPy/demo.py/blob/main/data_types/string.md#string-methods)
+- [Tuple](https://github.com/almostDemoPy/demo.py/blob/c33ecd83d97d0b89ae8299fb98ef7b3de16053b9/data_types/tuple.md)
 
 ## Operations
 1. [Arithmetic](<https://github.com/almostDemoPy/demo.py/tree/main/demo.py/operations/arithmetic>)
