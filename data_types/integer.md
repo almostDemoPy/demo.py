@@ -17,3 +17,12 @@ sample : int = 7193209397147042915750149147
 >>> sample
 7193209397147042915750149147
 ```
+
+> **TIP**
+> ` _ ` Underscores can be used for thousand separators. This makes it easier to read big integers.
+> ```py
+> sample : int = 1_000
+> 
+> >>> sample
+> 1000
+> ```
