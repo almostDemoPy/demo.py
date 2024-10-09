@@ -135,6 +135,21 @@ sample : Sample = Sample()
 ```
 
 
+### Callable Annotations
+Annotations for functions and callables are denoted by ` Callable ` from the ` collections.abc ` module. When suffixed with enclosing ` [] ` square brackets, it takes two parameters: a list of annotations of the callable's parameters; and the annotation of the callable's return type / value.
+
+**Example**
+```py
+sample : Callable[[int, int], int] = lambda x, y: return x + y
+
+>>> sample(1, 2)
+3
+```
+
+**Explanation**
+The lambda function takes 2 parameters, of which are ` int `s ( indicated by ` [int, int] ` ), and returns a new ` int ` value.
+
+
 ## Union of Annotations
 Annotations can be grouped in one placement / position. This can be done through the ` | ` bitwise-OR syntax, or ` Union ` annotation from the ` typing ` module. Appending the annotations as a union indicates that the type of the variables or values can or may be either of the specified.
 
