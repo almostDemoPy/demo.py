@@ -117,6 +117,62 @@ async def error(interaction : Interaction, error : Exception) -> None:
 ```
 
 
+### Slash Commands in Cogs
+To construct a slash command in a ` Cog ` subclass, <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.app_commands.command'>` @app_commands.command() `</a> is used. ` @CommandTree.command() ` won't work in this case.
+
+**Example**
+```py
+class Sample(Cog):
+  @app_commands.command()
+  async def sample(self, interaction : Interaction) -> None:
+    ...
+```
+
+
+## Context Menus
+Context Menus are those commands where you right-click on a message or user and are found under ` Apps ` section. Unlike slash commands, context menus only take up 2 required arguments: ` interaction ` - the interaction object, and ` user ` or ` message ` - the user or message object the command was ran on, depending on the type it is registered as.
+
+<a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.app_commands.CommandTree.context_menu'>` @context_menu() `</a> decorator is used to construct a context menu command.
+
+
+### User Context Menu Commands
+To construct a user-type context menu command, the second argument should be a ` Member ` or ` User ` annotated.
+
+**Example**
+```py
+@tree.context_menu()
+async def sample(interaction : Interaction, member : Member) -> None:
+  await interaction.response.send_message(f"Pinged {member.mention}")
+```
+
+### Message Context Menu Commands
+To construct a message-type context menu command, the second argument should be ` Message ` annotated.
+
+**Example**
+```py
+@tree.context_menu()
+async def sample(interaction : Interaction, message : Message) -> None:
+  await interaction.response.send_message(f"{message.author.name} sent this message")
+```
+
+
+### Context Menus in Cogs
+To create a context menu command inside a ` Cog ` subclass, <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.app_commands.ContextMenu'>` ContextMenu `</a> class is initiated inside the cog's ` __init__ ` dunder method or separate function.
+
+**Example**
+```py
+class Sample(Cog):
+  def __init__(self) -> None:
+    self.ctx_menu : ContextMenu = ContextMenu(
+      name = "hello world",
+      callback = self.ctx_menu_callback
+    )
+
+  async def ctx_menu_callback(self, interaction : Interaction, message : Message) -> None:
+    ...
+```
+
+
 ## Responding to an Interaction
 Interactions must be responded and cannot be ignored. This can be done using the <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.InteractionResponse'>` InteractionResponse `</a> instance of an <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.Interaction'>` Interaction `</a> object, obtained via the <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.Interaction.response'>` response `</a> attribute.
 
@@ -161,3 +217,24 @@ Standard way to respond to an interaction is similar to any other ` send() ` met
 async def sample(interaction : Interaction) -> None:
   await interaction.response.send_message("hello world")
 ```
+
+
+## Registering Application Commands
+Registering your command tree updates the application commands to the API. Doing so will reflect the changes you made to your application commands' code into the Discord app client ( Note: changes to command callback does not need registering ).
+
+To register your application commands, <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.app_commands.CommandTree.sync'>` await CommandTree.sync() `</a> is called. **It is highly advisable that you don't register your application commands automatically by doing it in an event, loop, or any automated mechanism. This may cause your application to get rate limited. Instead, you may do it in a command**.
+
+The method takes up 1 optional keyword argument:
+- **guild** : Optional[<a href = 'https://discordpy.readthedocs.io/en/stable/api.html#discord.abc.Snowflake'>` Snowflake `</a>] = the guild to sync the commands to. If this is ` None `, it instead registers the global application commands. Defaults to ` None `
+
+**Example**
+```py
+@bot.command()
+@commands.is_owner()
+async def sync(ctx : Context) -> None:
+  await ctx.bot.tree.sync()
+  await ctx.reply("Application commands have been successfully registered")
+```
+
+> **NOTE**
+> If the applications still have not showed up, try restarting your Discord, or check and properly construct and register your application commands.
