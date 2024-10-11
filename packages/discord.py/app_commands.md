@@ -238,3 +238,23 @@ async def sync(ctx : Context) -> None:
 
 > **NOTE**
 > If the applications still have not showed up, try restarting your Discord, or check and properly construct and register your application commands.
+
+
+## User-Installed Application Commands
+User-installed application commands allow the user to install it to their account, which by then they can execute anywhere where they are without needing to invite the bot in a guild or DM, as long as it's registered to be available in that context.
+
+A user-install application command can be constructed with either <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.app_commands.allowed_installs'>` @allowed_installs() `</a> or <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.app_commands.user_install'>` @user_install() `</a> decorator. With the ` @allowed_installs() ` decorator, ` users ` parameter should be passed as ` True `.
+
+To specify what contexts the application command is available to be executed, <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.app_commands.allowed_contexts'>` @allowed_contexts() `</a> decorator is used. The decorator takes 3 keyword arguments:
+- **guilds** : ` bool ` = whether the command can be executed in a guild without the bot having to be in it
+- **dms** : ` bool ` = whether the command can be executed in the bot's DM
+- **private_channels** : ` bool ` = whether the command can be executed in a group DM or DM other than the bot's
+
+**Example**
+```py
+@tree.command()
+@allowed_installs(guilds = True, users = True)
+@allowed_contexts(guilds = True, dms = True, private_channels = True)
+async def sample(interaction : Interaction) -> None:
+  await interaction.response.send_message("I'm ran in a DM channel!")
+```
