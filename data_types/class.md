@@ -222,6 +222,7 @@ class Sample:
 ```
 
 > **NOTE**
+> 
 > In Python, a complex number is represented as a pair of real numbers, where the first part is the real part and the second part is the imaginary part, followed by 'j' or 'J'.
 
 ### ` __contains__(self, value : Any) `
@@ -845,6 +846,7 @@ class Sample:
 ```
 
 > **NOTE**
+> 
 > ` __new__ ` is called first before ` __init__ `.
 
 ### ` __next__(self) `
