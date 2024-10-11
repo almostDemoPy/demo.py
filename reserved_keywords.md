@@ -531,6 +531,7 @@ lambda <args>: <statements>
 - **statements** = collection of statements by which the lambda function operates.
 
 > **NOTE**
+> 
 > Assignment operations do not work inside lambda functions, neither are multi-line codes.
 
 **Example**
