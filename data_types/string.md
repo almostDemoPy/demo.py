@@ -370,6 +370,7 @@ False
 ```
 
 > **NOTE**
+> 
 > ` _ ` Underscores and ` " " ` empty spaces are not considered alphanumeric.
 
 
