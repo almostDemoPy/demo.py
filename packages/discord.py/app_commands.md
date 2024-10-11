@@ -40,6 +40,7 @@ async def sample(interaction : Interaction, name : str) -> None:
 ```
 
 > **See also**
+> 
 > <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.app_commands.Namespace'>` Namespace `</a>
 
 
@@ -100,6 +101,7 @@ async def language_autocomplete(interaction : Interaction, current : str) -> Lis
 The autocomplete callback requires 2 arguments: ` interaction ` - the interaction object, ` current ` - the text the user has currently typed in. The function returns a list of programming languages whose name contains a substring of what the user has currently typed.
 
 > **NOTE**
+> 
 > Autocompletes do not limit the user from typing anything else, thus you must handle properly if the user picked a value that is outside of the encoded valid values.
 
 
@@ -194,6 +196,7 @@ async def sample(interaction : Interaction) -> None:
 ```
 
 > **NOTE**
+> 
 > You cannot respond with another ` InteractionResponse ` method again after you defer since you can only respond once to an interaction. If you wish to update the deferring response, use <a href = 'https://discordpy.readthedocs.io/en/stable/interactions/api.html#discord.Interaction.followup'>` await Interaction.followup.send() `</a> instead
 
 
@@ -237,6 +240,7 @@ async def sync(ctx : Context) -> None:
 ```
 
 > **NOTE**
+> 
 > If the applications still have not showed up, try restarting your Discord, or check and properly construct and register your application commands.
 
 
