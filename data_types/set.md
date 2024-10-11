@@ -95,6 +95,7 @@ sample : Set[int] = {1, 2, 3}
 ```
 
 > **NOTE**
+> 
 > This does not update the first set. If you wish to update the first set with the difference of 2 sets, use ` difference_update() ` instead.
 
 
@@ -145,6 +146,7 @@ sample : Set[int] = {1, 2, 3}
 ```
 
 > **NOTE**
+> 
 > This does not update the first set. If you wish to update the first set with the common elements of all provided sets with it, use ` intersection_update() ` instead.
 
 
@@ -186,6 +188,7 @@ False
 ```
 
 > **NOTE**
+> 
 > An empty set ` {} ` is always a subset to any set.
 
 
@@ -207,6 +210,7 @@ False
 ```
 
 > **NOTE**
+> 
 > An ` {} ` empty set is always a subset of any superset.
 
 
@@ -278,6 +282,7 @@ sample : Set[int] = {1, 2, 3}
 The symmetric difference of two sets is a set whose elements are not found in both of the sets.
 
 > **NOTE**
+> 
 > This does not update the first set. If you wish to update the first set with the symmetric difference of the two sets, use ` symmetric_difference_update() ` instead.
 
 
