@@ -20,6 +20,16 @@ async def sample(interaction : Interaction) -> None:
 ```
 
 
+### Append Components
+To add a button or select menu to a ` View ` object, <a href = 'https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#discord.ext.commands.Bot.add_view' text-decoration = none>` await Bot.add_view() `</a> is used. Components passed in this method should be instances and not the classes itself.
+
+**Example**
+```py
+button : Button = Button(...)
+view.add_item(button)
+```
+
+
 ### Persistent Views
 By default, views have a timeout of ` 180 ` seconds. This timeout resets when a component interaction has been created. Persistent views do not die, even after the bot's process has been restarted. To construct one, the ` timeout ` parameter of a ` View ` class should be ` None `. Components of the view should contain unique ` custom_id `s as well. The view should be then added to the bot via <a href = 'https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#discord.ext.commands.Bot.add_view'>` await Bot.add_view() `</a> method.
 
