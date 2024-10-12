@@ -51,3 +51,35 @@ array([[54175984579, 49302480142, 32148914842],
 >>> empty_like(b)
 array([1.2002049040, 12.0420490294, 5.9402940238])
 ```
+
+### ` eye(N, M = None, k = 0, dtype = float, order = "C", *, device = None, like = None) `
+Returns a 2D array with ` 1 `s  on the diagonal and ` 0 `s elswhere
+
+**Parameters**:
+- **N** : ` int ` = number of rows
+- **M** : Optional[` int `] = number of columns. If ` None `, defaults to ` N `. Defaults to ` None `
+- **k** : Optional[` int `] = index of the diagonal. ` 0 ` refers to the main diagonal. A positive value refers to an upper diagonal. A negative value refers to a lower diagonal. Defaults to ` 0 `
+- **dtype** : Optional[` type `] = data type of the returned array. Defaults to ` float `
+- **order** : Optional[Literal[` "C" `, ` "F" `]] - whether the output should be stored in row-major ( C-style ) or column-major ( Fortran-style ) order in memory
+- **device** : Optional[` str `] = device on which to place the created array. For Array-API interoperability only, so must be ` "cpu" ` if passed. Defaults to ` None `
+- **like** : Optional[` array-like `] = reference object to allow the creation of arrays which are not NumPy arrays. If an array-like passed in as ` like ` supports the ` __array_function__ ` protocol, the result will be defined by it. In this case, it ensures the creation of an array object compatible with that passed in via this argument.
+
+**Returns**: ` ndarray `
+
+```py
+from numpy import eye
+
+>>> eye(5, dtype = int)
+array([[1, 0, 0, 0, 0],
+       [0, 1, 0, 0, 0],
+       [0, 0, 1, 0, 0],
+       [0, 0, 0, 1, 0],
+       [0, 0, 0, 0, 1]])
+
+>>> eye(5, dtype = int, k = 2)
+array([[0, 0, 1, 0, 0],
+       [0, 0, 0, 1, 0],
+       [0, 0, 0, 0, 1],
+       [0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0]])
+```
