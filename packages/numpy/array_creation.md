@@ -83,3 +83,27 @@ array([[0, 0, 1, 0, 0],
        [0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0]])
 ```
+
+
+### ` identity(n, dtype = float, *, like = None) `
+Returns the identity array.
+
+An identity array is a square array with ` 1 `s on the main diagonal.
+
+**Parameters**:
+- **n** : ` int ` = number of rows and columns
+- **dtype** : Optional[` type `] = data type of the output
+- **like** : Optional[` array-like `] = reference object to allow the creation of arrays which are not NumPy arrays. If an array-like passed in as ` like ` supports the ` __array_function__ ` protocol, the result will be defined by it. In this case, it ensures the creation of an array object compatible with that passed in via this argument.
+
+**Returns**: ` ndarray `
+
+```py
+from numpy import identity
+
+>>> identity(5)
+array([[1, 0, 0, 0, 0],
+       [0, 1, 0, 0, 0],
+       [0, 0, 1, 0, 0],
+       [0, 0, 0, 1, 0],
+       [0, 0, 0, 0, 1]])
+```
