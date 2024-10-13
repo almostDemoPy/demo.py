@@ -65,7 +65,7 @@ x <<= 3
 ```
 
 
-### Bitwise-OR AND Operation
+## Bitwise-OR AND Operation
 Performs the ` | ` bitwise-OR on both operands and assigns the new value to the left operand
 
 **Equivalent to**:
