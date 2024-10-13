@@ -77,7 +77,7 @@ Divides the two operands and returns the result in ` int `
 ```
 
 
-### Modulo Operation
+## Modulo Operation
 Returns the remainder of the quotient of the two operands
 
 **Supported Data Type Operands**
