@@ -95,15 +95,31 @@ Book of Python containing every possible simplified versions of documentations, 
 | [` return `](https://github.com/almostDemoPy/demo.py/blob/main/reserved_keywords.md#return) | [` True `](https://github.com/almostDemoPy/demo.py/blob/main/reserved_keywords.md#true) | [` try `](https://github.com/almostDemoPy/demo.py/blob/main/reserved_keywords.md#try) | [` type `](https://github.com/almostDemoPy/demo.py/blob/main/reserved_keywords.md#type) | [` while `](https://github.com/almostDemoPy/demo.py/blob/main/reserved_keywords.md#while) |
 | [` with `](https://github.com/almostDemoPy/demo.py/blob/main/reserved_keywords.md#with) | [` yield `](https://github.com/almostDemoPy/demo.py/blob/main/reserved_keywords.md#yield) |
 
+## Type Annotations
+- [Annotating Variables](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#annotating-variables)
+  - [String Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#string-annotations)
+   - [Integer Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#integer-annotations)
+   - [Float Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#float-annotations)
+   - [List Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#list-annotations)
+   - [Dictionary Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#dictionary-annotations)
+   - [Tuple Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#tuple-annotations)
+   - [None Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#none-annotations)
+   - [Class Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#class-annotations)
+   - [Callable Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#callable-annotations)
+- [Union of Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#union-of-annotations)
+- [Return Annotations](https://github.com/almostDemoPy/demo.py/blob/main/type_annotations.md#return-annotations)
+
 ## Packages
-| Name | Description | Pip Installation |
-|  -   |      -      |         -        |
-| [discord.py](https://github.com/almostDemoPy/demo.py/tree/main/demo.py/packages/discord.py) | A Discord API wrapper for Python | ` pip install discord.py ` |
+| Name | Description | Pip Installation Name | Official Docs |
+|  -   |      -      |         -        |       -       |
+| [discord.py](https://github.com/almostDemoPy/demo.py/tree/main/packages/discord.py) | A Discord API wrapper for Python | ` discord.py ` | [discordpy.readthedocs.io](https://discordpy.readthedocs.io/en/stable/index.html) |
 
 ## Projects
-1. [Text Encryption Tool](https://github.com/almostDemoPy/demo.py/blob/main/demo.py/projects/text_encryption_tool.py)
+1. [Text Encryption Tool](https://github.com/almostDemoPy/demo.py/blob/main/projects/text_encryption_tool.py)
 
 
 ## Socials
+
 Discord : [demo.py](https://discord.gg/UQhuWWufgb)
+
 Reddit : [r/demo_py](https://www.reddit.com/r/demo_py/)
