@@ -113,6 +113,7 @@ Book of Python containing every possible simplified versions of documentations, 
 | Name | Description | Pip Installation Name | Official Docs |
 |  -   |      -      |         -        |       -       |
 | [discord.py](https://github.com/almostDemoPy/demo.py/tree/main/packages/discord.py) | A Discord API wrapper for Python | ` discord.py ` | [discordpy.readthedocs.io](https://discordpy.readthedocs.io/en/stable/index.html) |
+| [numpy](https://github.com/almostDemoPy/demo.py/tree/main/packages/numpy) | Fundamental package for scientific computing in Python | ` numpy ` | [numpy.org](https://numpy.org/doc/2.1/reference/index.html)
 
 ## Projects
 1. [Text Encryption Tool](https://github.com/almostDemoPy/demo.py/blob/main/projects/text_encryption_tool.py)
