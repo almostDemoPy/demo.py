@@ -107,3 +107,25 @@ array([[1, 0, 0, 0, 0],
        [0, 0, 0, 1, 0],
        [0, 0, 0, 0, 1]])
 ```
+
+
+### ` ones(shape, dtype = float64, order = "C", *, device = None, like = None) `
+Return a new array with the given shape and data type, filled with ` 1 `s
+
+**Parameters**:
+- **shape** : Union[Sequence[` int `], ` int `] = shape of the array
+- **dtype** : Optional[` type `] = data type of the entires. Defaults to [` float64 `](https://numpy.org/doc/2.1/reference/arrays.scalars.html#numpy.float64)
+- **order** : Optional[Literal[` "C" `, ` "F" `]] = whether to store multi-dimensional data in row-major ( C-style ), or column-major ( Fortran-style ) order in memory. Defaults to ` "C" `
+- **device** : Optional[` str `] = the device on which to place the created array. For Array-API interoperability only, so must be ` "cpu" ` if passed. Defaults to ` None `
+
+```py
+from numpy import ones
+
+>>> ones(3)
+array([1, 1, 1])
+
+>>> ones(3, 3)
+array([[1, 1, 1],
+       [1, 1, 1],
+       [1, 1, 1]])
+```
