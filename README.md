@@ -56,7 +56,7 @@ Book of Python containing every possible simplified versions of documentations, 
 - [` & ` Bitwise-AND](https://github.com/almostDemoPy/demo.py/blob/main/operations/bitwise.md#bitwise-and-operation)
 - [` << ` Bitwise Left Shift](https://github.com/almostDemoPy/demo.py/blob/main/operations/bitwise.md#bitwise-left-shift-operation)
 - [` ~ ` Bitwise-NOT](https://github.com/almostDemoPy/demo.py/blob/main/operations/bitwise.md#bitwise-not-operation)
-- [` ^ ` Bitwise-OR](https://github.com/almostDemoPy/demo.py/blob/main/operations/bitwise.md#bitwise-or-operation)
+- [` | ` Bitwise-OR](https://github.com/almostDemoPy/demo.py/blob/main/operations/bitwise.md#bitwise-or-operation)
 - [` >> ` Bitwise Right Shift](https://github.com/almostDemoPy/demo.py/blob/main/operations/bitwise.md#bitwise-right-shift-operation)
 - [` ^ ` Bitwise-xOR](https://github.com/almostDemoPy/demo.py/blob/main/operations/bitwise.md#bitwise-xor-operation)
 
