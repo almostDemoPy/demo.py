@@ -64,7 +64,7 @@ Book of Python containing every possible simplified versions of documentations, 
 - [` == ` Equal To](https://github.com/almostDemoPy/demo.py/blob/main/operations/comparison.md#equal-to-operation)
 - [` >= ` Greater Than Or Equal To](https://github.com/almostDemoPy/demo.py/blob/main/operations/comparison.md#greater-than-or-equal-to-operation)
 - [` > ` Greater Than](https://github.com/almostDemoPy/demo.py/blob/main/operations/comparison.md#greater-than-operation)
-- [` <= ` Less Than Equal To](https://github.com/almostDemoPy/demo.py/blob/main/operations/comparison.md#less-than-or-equal-to-operation)
+- [` <= ` Less Than Or Equal To](https://github.com/almostDemoPy/demo.py/blob/main/operations/comparison.md#less-than-or-equal-to-operation)
 - [` < ` Less Than](https://github.com/almostDemoPy/demo.py/blob/main/operations/comparison.md#less-than-operation)
 - [` != ` Not Equal To](https://github.com/almostDemoPy/demo.py/blob/main/operations/comparison.md#not-equal-to-operation)
 
